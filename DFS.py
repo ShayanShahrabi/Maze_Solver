@@ -1,8 +1,8 @@
 from pyMaze import maze, agent, COLOR
 #-----------------------------------------------------------------------------
-def DFS(m):  # takes a maze of any size
-    start = (m.rows, m.cols)  # the start cell is the bottom-down cell
-    explored = [start]
+def DFS(maze):  # takes a maze object of any size
+    start = (maze.rows, maze.cols)  # the start cell is the bottom-down cell
+    explored_cells = [start]
     frontier = [start]
     dfs_path = {}
     while len(frontier) != 0:
@@ -10,7 +10,7 @@ def DFS(m):  # takes a maze of any size
         if current_cell == (1, 1):  # if reached goal cell
             break
         for direction in 'ESNW':
-            if m.maze_map[current_cell][direction] == True:
+            if maze.maze_map[current_cell][direction] == True:
                 if direction == 'E':
                     child_cell = (current_cell[0], current_cell[1] + 1)
                 elif direction == 'W':
@@ -19,9 +19,9 @@ def DFS(m):  # takes a maze of any size
                     child_cell = (current_cell[0] + 1, current_cell[1])
                 elif direction == 'N':
                     child_cell = (current_cell[0] - 1, current_cell[1])
-                if child_cell in explored:
+                if child_cell in explored_cells:
                     continue
-                explored.append(child_cell)
+                explored_cells.append(child_cell)
                 frontier.append(child_cell)
                 dfs_path[child_cell] = current_cell
     forward_path = {}

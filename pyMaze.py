@@ -2,7 +2,7 @@ import random,datetime,csv,os
 from tkinter import *
 from enum import Enum
 from collections import deque
-
+#-----------------------------------------------------------------------------
 class COLOR(Enum):
     '''
     This class is created to use the Tkinter colors easily.
@@ -21,7 +21,7 @@ class COLOR(Enum):
     green=('green4','pale green')
     blue=('DeepSkyBlue4','DeepSkyBlue2')
     yellow=('yellow2','yellow2')
-
+#-----------------------------------------------------------------------------
 class agent:
     '''
     The agents can be placed on the maze.
@@ -186,7 +186,7 @@ class agent:
         self._coord=(*p1,*p2)  
         self._parentMaze._canvas.coords(self._head,*self._coord)
         self._orient=(self._orient-1)%4
- 
+
         
     def _RCW(self):
         '''
@@ -223,6 +223,7 @@ class agent:
         if self._parentMaze.maze_map[self.x,self.y]['S']==True:
             self.x=self.x+1
             self.y=self.y
+#-----------------------------------------------------------------------------
 class textLabel:
     '''
     This class is to create Text Label to show different results on the window.
@@ -251,7 +252,7 @@ class textLabel:
         self.lab = Label(self._parentMaze._canvas, textvariable=self._var, bg="white", fg="black",font=('Helvetica bold',12),relief=RIDGE)
         self._var.set(f'{self.title} : {self.value}')
         self.lab.pack(expand = True,side=LEFT,anchor=NW)
-
+#-----------------------------------------------------------------------------
 class maze:
     '''
     This is the main class to create maze.
@@ -868,3 +869,4 @@ class maze:
         Finally to run the Tkinter Main Loop
         '''
         self._win.mainloop()
+#-----------------------------------------------------------------------------

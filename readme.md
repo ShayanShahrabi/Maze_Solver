@@ -14,7 +14,13 @@ This repo is a collection of maze solving algorithms I've learned through my "Al
 There are several files in this repo:
 - `pyMaze.py`
 - `DFS.py`
-
+used stack to implement. 
+- `BFS.py`
+Breadth-First searched is garanteed to give the **shortest path** while being an **un-informed** of **blind** search.
+Of course, a queue is used to perform bfs.
+The `BFS_path` is a dictionary like this: child_cell:currecnt_cell
+- `A_star.py`
+an informed algorithm
 # Resources
 
 

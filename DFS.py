@@ -1,11 +1,11 @@
-from pyMaze import maze, agent, COLOR
+from pyMaze import maze, agent, COLOR, textLabel
 #-----------------------------------------------------------------------------
 def DFS(maze):  # takes a maze object of any size
     start = (maze.rows, maze.cols)  # the start cell is the bottom-down cell
     explored_cells = [start]
     frontier = [start]
     dfs_path = {}
-    while len(frontier) != 0:
+    while len(frontier) > 0:
         current_cell = frontier.pop()
         if current_cell == (1, 1):  # if reached goal cell
             break
@@ -17,7 +17,7 @@ def DFS(maze):  # takes a maze object of any size
                     child_cell = (current_cell[0], current_cell[1] - 1)
                 elif direction == 'S':
                     child_cell = (current_cell[0] + 1, current_cell[1])
-                elif direction == 'N':
+                else:  # direction == 'W'
                     child_cell = (current_cell[0] - 1, current_cell[1])
                 if child_cell in explored_cells:
                     continue
@@ -39,7 +39,8 @@ m = maze(row_num, col_num)
 m.CreateMaze()
 
 path = DFS(m)
-a = agent(m, footprints=True)
+a = agent(m, footprints=True, filled=True)
 m.tracePath({a:path})  # {agent : the path we want the agent to follow}
+t_label = textLabel(m, 'Length of The Shortest Path', len(path) + 1)
 
 m.run()  # show the result
